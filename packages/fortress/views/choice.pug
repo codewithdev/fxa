@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 #{data.global.title} <span class="highlight">#{data.title}</span>
+  h2 #{data.global.planPicker}
+  .cards
+    each plan in data.plans
+      .card.price-card(class=`${typeof plan.popular === "undefined" ? "" : "popular"}`)
+        h3 #{plan.title}
+        .price-box
+          h4 #{plan.monthPrice}
+          p per month
+          if plan.savings
+            p.savings Save #{plan.savings}
+          else
+            p.no-savings save 0%
+        a.button(href=`${data.global.paymentsUrl}/${data.productId}?plan=${plan.planId}`) Subscribe

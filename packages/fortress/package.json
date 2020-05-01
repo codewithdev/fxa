@@ -20,10 +20,11 @@
   },
   "private": true,
   "dependencies": {
-    "bower": "*",
     "client-sessions": "0.6.x",
     "express": "4.16.4",
-    "morgan": "1.9.1"
+    "jquery": "^3.5.0",
+    "morgan": "1.9.1",
+    "pug": "2.0.4"
   },
   "engines": {
     "node": ">=12",
@@ -31,8 +32,10 @@
   },
   "devDependencies": {
     "audit-filter": "0.5.0",
+    "browser-sync": "^2.26.7",
     "eslint": "6.6.0",
     "eslint-plugin-fxa": "2.0.1",
+    "nodemon": "^2.0.3",
     "npm-run-all": "4.1.5",
     "pm2": "^4.2.3",
     "prettier": "1.18.2"
@@ -41,11 +44,12 @@
     "lint": "npm-run-all --parallel lint:*",
     "audit": "npm audit --json | audit-filter --nsp-config=.nsprc --audit=-",
     "lint:eslint": "eslint .",
-    "postinstall": "bower install --config.interactive=false -s",
     "start": "pm2 start pm2.config.js",
     "stop": "pm2 stop pm2.config.js",
     "restart": "pm2 restart pm2.config.js",
     "test": "npm run lint",
-    "format": "prettier '**' --write"
+    "format": "prettier '**' --write",
+    "dev": "nodemon server.js",
+    "ui": "browser-sync start --proxy='localhost:9292' --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --port=6006 --no-open --serveStatic='static'"
   }
 }

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 #{data.global.title}
+  h2 #{data.global.tagline}
+  .cards
+    each product in data.products
+      .card
+        h3 #{product.title}
+        ul
+          each sellingPoint in product.sellingPoints
+            li #{sellingPoint}
+        a.button(href=`${product.slug}`) Subscribe to #{product.title}
