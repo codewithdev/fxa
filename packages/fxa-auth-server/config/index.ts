@@ -1820,4 +1820,6 @@ if (conf.get('isProduction')) {
   }
 }
 
+export type conf = typeof conf;
+
 module.exports = conf;
